@@ -1,0 +1,13 @@
+<main>
+    <section class="card">
+        <h1>Connexion</h1>
+        <form method="POST" action="https://localhost:8080/login">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username" placeholder="Nom d'utilisateur">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" placeholder="Mot de passe">
+                <button type="submit">Connexion</button>
+        </form>
+        <p>Pas encore inscrit ? <a [routerLink]="['/register']" href="/register">Créez un compte</a></p>
+    </section>
+</main>

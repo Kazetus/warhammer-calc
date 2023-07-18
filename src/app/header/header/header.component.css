@@ -1,0 +1,29 @@
+header {
+    padding: 1rem 0;
+    background-color: #435667;
+    color: #fafafa;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+.title {
+    align-self: center;
+}
+.navBar {
+    display: flex;
+    justify-content: space-between;
+}
+li{
+    border-right:#fafafa 1px solid;
+    padding: 1rem;
+}
+li:first-child{
+    border-left:#fafafa 1px solid;
+}
+li:hover a{
+    color: #435667;
+}
+li:hover {
+    background-color: #fafafa;
+}

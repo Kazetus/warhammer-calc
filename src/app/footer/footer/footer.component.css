@@ -1,0 +1,23 @@
+footer {
+    padding: 1rem 0;
+    background-color: #435667;
+    color: #fafafa;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+.title, .law, .copyright {
+    width: 25%;
+    align-self: center;
+    padding: 1rem 0;
+}
+.law {
+    border-left: #fafafa 1px solid;
+    border-right: #fafafa 1px solid;
+    text-align: center;
+}
+.copyright{
+    font-size: 0.7rem;
+    text-align: justify;
+}

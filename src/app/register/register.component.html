@@ -1,0 +1,15 @@
+<main>
+    <section class="card">
+        <h1>Inscription</h1>
+        <form method="POST" action="https://localhost:8080/register">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username" placeholder="Nom d'utilisateur">
+                <label for="mail">Adresse E-mail</label>
+                <input type="email" id="mail" name="mail" placeholder="Adresse E-mail">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" placeholder="Mot de passe">
+                <button type="submit">Inscription</button>
+        </form>
+        <p>Déjà inscrit ? <a [routerLink]="['/login']" href="/login">Connectez-vous.</a></p>
+    </section>
+</main>
