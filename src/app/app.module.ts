@@ -11,6 +11,7 @@ import { BuilderComponent } from './builder/builder.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ArticleComponent } from './article/article.component';
+import { ListeComponent } from './liste/liste.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ArticleComponent } from './article/article.component';
     BuilderComponent,
     LoginComponent,
     RegisterComponent,
-    ArticleComponent
+    ArticleComponent,
+    ListeComponent
   ],
   imports: [
     BrowserModule,
