@@ -1,0 +1,31 @@
+<main>
+    <div class="container">
+        <section>
+            <div>
+                <h1>Les armées</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Nom de l'armée
+                            </th>
+                            <th>
+                                Factions
+                            </th>
+                            <th>
+                                Points
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let army of armyList">
+                            <td>{{army.name}}</td>
+                            <td>{{army.units[0].faction}}</td>
+                            <td>{{ArmyPoints(army)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>

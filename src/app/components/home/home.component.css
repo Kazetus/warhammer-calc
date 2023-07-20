@@ -10,8 +10,8 @@ div img {
     border-radius: 15px;
 }
 section .intro {
-    width: 47%;
-    margin: 1rem;
+    width: 45%;
+    margin: 2rem 0;
     order: 2;
     border-radius: 10px;
     border: #2AA9BD 1px solid;

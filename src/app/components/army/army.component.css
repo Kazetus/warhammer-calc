@@ -1,0 +1,19 @@
+section {
+    display: flex;
+    width: 100%;
+}
+table {
+    padding: 1rem;
+    width: 65%;
+    margin: 1rem auto;
+    border-collapse: collapse;
+}
+th, td {
+    border: #435667 1px solid;
+    padding: 1rem;
+    width: 33%;
+    text-align: center;
+}
+section div {
+    width: 100%;
+}
