@@ -4,7 +4,13 @@
     box-sizing: border-box;
 }
 body {
-    background: #c9c9c9;
+    background: #efefef;
+}
+app-root{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 img {
     max-width: 100%;

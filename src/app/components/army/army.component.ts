@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ArmyService } from 'src/app/services/units/army.service';
+import { ArmyService } from 'src/app/services/army/army.service';
 import { Army } from 'src/app/models/army.model';
 import { Units } from 'src/app/models/units.model';
 @Component({
