@@ -1,12 +1,11 @@
-import { Alliance } from "./alliance.model";
+import { Units } from "./units.model";
 
 export class Faction {
     id = 0;
     name = "";
-    alliance: Alliance;
+    units: Units[] = [];
 
-    constructor(name: string, alliance: Alliance) {
+    constructor(name: string) {
         this.name = name;
-        this.alliance = alliance
     }
 }

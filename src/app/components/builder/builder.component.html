@@ -2,9 +2,17 @@
     <h1>
         Créez votre armée
     </h1>
-    <form>
-        <select name="alliance" id="alliance">
-            <option *ngfor="let name of alliance" value={{name}}>{{name}}</option>
+    <form [formGroup]="allianceForm">
+        <select name="alliance" id="alliance" formControlName="alliance">
+            <option *ngFor="let alliance of alliances" [value]="alliance.name" value="{{alliance.name}}">
+                {{alliance.name}}
+            </option>
         </select>
+        <select name="faction" id="faction">
+            <option *ngFor="let faction of getFactionOfAlliance()">
+                {{faction.name}}
+            </option>
+        </select> 
     </form>
+    <p></p>
 </section>

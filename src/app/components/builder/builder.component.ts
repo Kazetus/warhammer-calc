@@ -1,24 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { ArmyService } from 'src/app/services/army/army.service';
-import { Faction } from 'src/app/models/faction.model';
 import { Alliance } from 'src/app/models/alliance.model';
-import { Units } from 'src/app/models/units.model';
+import { BuilderService } from 'src/app/services/builder/builder.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-builder',
   templateUrl: './builder.component.html',
   styleUrls: ['./builder.component.css']
 })
 export class BuilderComponent implements OnInit{
-    faction: Faction[];
-    alliance: Alliance[];
-    units: Units[];
+    alliances: Alliance[];
+    allianceForm: FormGroup;
 
-    constructor(private armyService: ArmyService){
-        this.faction = armyService.getFaction();
-        this.alliance = armyService.getAlliance();
-        this.units = armyService.getArmy();
+    constructor(private builderService: BuilderService){
+      this.alliances = builderService.getAlliance();
+      this.allianceForm = new FormGroup( {
+        'alliance': new FormControl("Xenos", Validators.required)
+      })
     }
     ngOnInit(): void {
-        
     }
+  getFactionOfAlliance() {
+    let selectAlliance = this.alliances.filter(alliances => alliances.name === this.allianceForm.value.alliance);
+    return selectAlliance[0].faction;
+ }
 }
