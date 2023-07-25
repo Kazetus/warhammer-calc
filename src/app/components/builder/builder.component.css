@@ -9,8 +9,7 @@ h1 {
     text-align: center;
 }
 form {
-    width: 40%;
-    margin: 0 3rem;
+    width: 30%;
     text-align: center;
 }
 select {
@@ -39,4 +38,7 @@ td, th {
     padding: 1rem;
     width: 33%;
     text-align: center;
+}
+.army{
+    width: 80%;
 }

@@ -3,6 +3,8 @@ import { Alliance } from 'src/app/models/alliance.model';
 import { BuilderService } from 'src/app/services/builder/builder.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Faction } from 'src/app/models/faction.model';
+import { Army } from 'src/app/models/army.model';
+import { Units } from 'src/app/models/units.model';
 @Component({
   selector: 'app-builder',
   templateUrl: './builder.component.html',
@@ -13,6 +15,7 @@ export class BuilderComponent implements OnInit{
     faction: Faction[];
     allianceForm: FormGroup;
     factionForm: FormGroup;
+    armyName: FormGroup;
     myArmy: Army;
     constructor(private builderService: BuilderService){
       this.alliances = builderService.getAlliance();
@@ -22,8 +25,11 @@ export class BuilderComponent implements OnInit{
       });
       this.factionForm = new FormGroup({
         'faction': new FormControl("choice", Validators.required)
-      })
-      
+      });
+      this.armyName = new FormGroup({
+        "name": new FormControl("New Army", Validators.required)
+      });
+      this.myArmy = new Army(this.armyName.value.name, this.factionForm.value.faction, this.allianceForm.value.alliance);
     }
     ngOnInit(): void {
     }
@@ -41,5 +47,16 @@ export class BuilderComponent implements OnInit{
         points += units.points;
     });
     return points;
+  }
+  addUnitsToArmy(units: Units) {
+    if(this.myArmy.units.length == 0) {
+      this.myArmy = new Army(this.armyName.value.name, this.factionForm.value.faction, this.allianceForm.value.alliance);
+      this.myArmy.units.push(units);
+    } else if (this.myArmy.faction != this.factionForm.value.faction) {
+
+    } else {
+      this.myArmy.units.push(units);
+    }
+    console.log(this.myArmy);
   }
 }
