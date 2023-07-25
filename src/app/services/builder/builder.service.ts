@@ -16,10 +16,14 @@ export class BuilderService {
     this.Alliance.push(new Alliance("Xenos"));
     this.Alliance[0].faction.push(this.Faction[0]);
     this.Faction.push(new Faction("Space marines"));
+    this.Faction.push(new Faction("Death guards"))
     this.Faction[1].units.push(new Units("Escouade Primaris", 170));
     this.Faction[1].units.push(new Units("Dreadnought", 115));
+    this.Faction[2].units.push(new Units("Escouade Terminator", 170));
+    this.Faction[2].units.push(new Units("Archangel", 115));
     this.Alliance.push(new Alliance("Space marines"));
     this.Alliance[1].faction.push(this.Faction[1]);
+    this.Alliance[1].faction.push(this.Faction[2]);
 
   }
   getAlliance() {

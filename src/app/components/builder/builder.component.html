@@ -1,18 +1,84 @@
-<section>
-    <h1>
-        Créez votre armée
-    </h1>
-    <form [formGroup]="allianceForm">
-        <select name="alliance" id="alliance" formControlName="alliance">
-            <option *ngFor="let alliance of alliances" [value]="alliance.name" value="{{alliance.name}}">
-                {{alliance.name}}
-            </option>
-        </select>
-        <select name="faction" id="faction">
-            <option *ngFor="let faction of getFactionOfAlliance()">
-                {{faction.name}}
-            </option>
-        </select> 
-    </form>
-    <p></p>
-</section>
+<main>
+    <div class="container">
+        <section>
+            <h1>
+                Créez votre armée
+            </h1>
+            <div class="army">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="3"></th>
+                        </tr>
+                        <tr>
+                            <th>Nom de l'unité</th>
+                            <th>Points</th>
+                            <th>Supprimer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let units of myArmy">
+                            <td>{{units.name}}</td>
+                            <td>{{units.points}}</td>
+                            <td>supprimer</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <th>{{myArmy.name}}</th>
+                            <th>{{ArmyPoints(myArmy)}}</th>
+                            <th>Enregistrer</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <form [formGroup]="allianceForm">
+                <label for="alliance">Alliance :</label>
+                <select name="alliance" id="alliance" formControlName="alliance">
+                    <option *ngFor="let alliance of alliances" [value]="alliance.name" value="{{alliance.name}}">
+                        {{alliance.name}}
+                    </option>
+                </select>
+            </form>
+            <form [formGroup]="factionForm">
+                <label for="alliance">Faction :</label>
+                <select name="faction" id="faction" formControlName="faction">
+                    <option [value]="'choice'">Choisir une Faction</option>
+                    <option *ngFor="let faction of getFactionOfAlliance()">
+                        {{faction.name}}
+                    </option>
+                </select> 
+            </form>
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Nom de l'unité
+                            </th>
+                            <th>
+                                Points
+                            </th>
+                            <th>
+                                Ajouter
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let units of getUnitsOfFaction()">
+                            <td>
+                                {{units.name}}
+                            </td>
+                            <td>
+                                {{units.points}}
+                            </td>
+                            <td>
+                                <!-- <button (click)="addUnitsToArmy()">Ajouter</button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
