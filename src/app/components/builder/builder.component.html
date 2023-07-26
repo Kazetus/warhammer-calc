@@ -17,15 +17,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let units of myArmy.units">
+                        <tr *ngFor="let units of myArmy.units; let index = index">
                             <td>{{units.name}}</td>
                             <td>{{units.points}}</td>
-                            <td>supprimer</td>
+                            <td><button (click)="removeUnitsFromArmy(index)">Supprimer</button></td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr>
-                            <th>{{myArmy.name}}</th>
+                            <th>{{myArmy.name}}, {{myArmy.faction}}, {{myArmy.alliance}}</th>
                             <th>{{ArmyPoints(myArmy)}}</th>
                             <th>Enregistrer</th>
                         </tr>
@@ -77,7 +77,7 @@
                                 {{units.points}}
                             </td>
                             <td>
-                                <button (click)="addUnitsToArmy(units)">Ajouter</button>
+                                <button (click)="editArmy(units)">Ajouter</button>
                             </td>
                         </tr>
                     </tbody>

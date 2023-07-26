@@ -29,9 +29,13 @@ export class BuilderComponent implements OnInit{
       this.armyName = new FormGroup({
         "name": new FormControl("New Army", Validators.required)
       });
-      this.myArmy = new Army(this.armyName.value.name, this.factionForm.value.faction, this.allianceForm.value.alliance);
+      this.myArmy = new Army(this.armyName.value.name, new Faction(this.factionForm.value.faction), new Alliance(this.allianceForm.value.alliance));
     }
     ngOnInit(): void {
+      let myArmyLocale = localStorage.getItem("myArmy");
+      if(myArmyLocale) {
+        this.myArmy = JSON.parse(myArmyLocale);
+      }
     }
   getFactionOfAlliance() {
     let selectAlliance = this.alliances.filter(alliances => alliances.name === this.allianceForm.value.alliance);
@@ -49,14 +53,22 @@ export class BuilderComponent implements OnInit{
     return points;
   }
   addUnitsToArmy(units: Units) {
+    this.myArmy.units.push(units);
+    localStorage.setItem('myArmy', JSON.stringify(this.myArmy));
+  }
+  editArmy (units: Units) {
     if(this.myArmy.units.length == 0) {
-      this.myArmy = new Army(this.armyName.value.name, this.factionForm.value.faction, this.allianceForm.value.alliance);
-      this.myArmy.units.push(units);
+      this.myArmy = new Army(this.armyName.value.name, new Faction(this.factionForm.value.faction), new Alliance(this.allianceForm.value.alliance));
+      this.addUnitsToArmy(units);
     } else if (this.myArmy.faction != this.factionForm.value.faction) {
-
     } else {
-      this.myArmy.units.push(units);
+      this.addUnitsToArmy(units);
     }
-    console.log(this.myArmy);
+    if(this.myArmy.name != this.armyName.value.name) {
+      this.myArmy.name = this.armyName.value.name;
+    }
+  }
+  removeUnitsFromArmy(units: number) {
+    this.myArmy.units.splice(units, 1);
   }
 }
