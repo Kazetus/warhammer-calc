@@ -8,10 +8,12 @@ import { Units } from 'src/app/models/units.model';
   styleUrls: ['./army.component.css']
 })
 export class ArmyComponent implements OnInit {
-  armyList: Army[];
+  //armyList: Army[];
 
   constructor(private armyService: ArmyService) {
-    this.armyList = armyService.getArmy();
+    
+    let List = armyService.getArmy();
+    console.log(List);
   }
   ngOnInit(): void {
   }

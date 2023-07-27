@@ -20,10 +20,10 @@ export class LoginComponent implements OnInit{
   }
   login() {
     this.wrongCredentials = false;
-    this.sessionLogin.login(this.username, this.password).subscribe(result => {
-      this.router.navigate(['/']);
-    }, error => {
-      this.wrongCredentials = true;
-    })
+    this.sessionLogin.login(this.username, this.password).subscribe({next :result => {
+      this.router.navigate(['/'])
+    },error: error => {
+      this.wrongCredentials = true
+    }})
   }
 }

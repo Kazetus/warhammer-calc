@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Army } from 'src/app/models/army.model';
-import { Units } from 'src/app/models/units.model';
 import { Faction } from 'src/app/models/faction.model';
 import { Alliance } from 'src/app/models/alliance.model';
+import { environment } from 'src/environments/environment';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,25 +12,21 @@ export class ArmyService {
   ArmyListsArray: Army[] = [];
   Alliance: Alliance[] =[];
   Faction: Faction[] = [];
+  ArmyAdress = "/public/army";
 
-  constructor() {
-    
-    this.Alliance.push(new Alliance("space Marines"));
-    this.Faction.push(new Faction("Space marines"));
-    this.Alliance.push(new Alliance("Xenos"));
-    this.Faction.push(new Faction("Orks"));
-    const army = new Army('Patrouille Orks', this.Faction[1], this.Alliance[1]);
-    army.units.push(new Units("Boyz", 170));
-    army.units.push(new Units("Kopters de la mort", 115));
-    this.ArmyListsArray.push(army);
-    const army2 = new Army('patrouille Space Marines', this.Faction[0], this.Alliance[0]);
-    army2.units.push(new Units("Escouade Primaris",250));
-    army2.units.push(new Units("Dreanaught", 230));
-    this.ArmyListsArray.push(army2);
+  constructor(
+    private http: HttpClient) {
+
    }
-   getArmy() {
-    return this.ArmyListsArray;
-   }
+   getArmy (): any {
+    try { fetch(environment.baseUrl + this.ArmyAdress)
+      .then(response => {console.log(response); return response})
+      .catch(error => (console.log(error)));
+      
+    } catch (error) {
+      
+    }
+    }
    getAlliance() {
     return this.Alliance;
    }

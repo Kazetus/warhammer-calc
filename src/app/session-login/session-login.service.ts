@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
  
@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 })
 export class SessionLoginService {
   LOGIN_URL = '/login';
-
   constructor(
     private httpClient: HttpClient
   ) { }
@@ -20,13 +19,13 @@ export class SessionLoginService {
     }
     return new Observable<boolean>((observer) => 
     {
-      this.httpClient.post(environment.baseUrl + this.LOGIN_URL, loginData).subscribe(result => {
+      this.httpClient.post(environment.baseUrl + this.LOGIN_URL, loginData).subscribe({next: result => {
         observer.next(true);
         observer.complete();
-      }, error => {
+      },error: error => {
         observer.error(false);
         observer.complete();
-      })
+      }})
     }) 
   }
   // logout() {
