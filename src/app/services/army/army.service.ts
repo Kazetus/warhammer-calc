@@ -3,8 +3,8 @@ import { Army } from 'src/app/models/army.model';
 import { Faction } from 'src/app/models/faction.model';
 import { Alliance } from 'src/app/models/alliance.model';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+import { Observable, catchError, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,21 +12,31 @@ export class ArmyService {
   ArmyListsArray: Army[] = [];
   Alliance: Alliance[] =[];
   Faction: Faction[] = [];
-  ArmyAdress = "/public/army";
-
+  ArmyAdress = "public/army";
+  optionRequete = {
+    headers: new HttpHeaders({ 
+      'Access-Control-Allow-Origin':'http://localhost:4200'
+    })
+  };
   constructor(
     private http: HttpClient) {
 
    }
-   getArmy (): any {
-    try { fetch(environment.baseUrl + this.ArmyAdress)
-      .then(response => {console.log(response); return response})
-      .catch(error => (console.log(error)));
-      
-    } catch (error) {
-      
-    }
-    }
+  //  getArmy (): Observable<any>{
+  //         return this.http.get(environment.baseUrl + this.ArmyAdress, this.optionRequete)
+  //           .pipe(
+  //             tap((resultat) => console.log("Résultat de la requête : ",resultat)),
+  //             catchError(this.handleError('erreur lors de la requête CORS', []))
+  //           );
+  //   }
+  getArmy() {
+    fetch(environment.baseUrl + this.ArmyAdress,{mode:"cors"})
+    .then(response => {response.json().then(data => {console.log(data)})});
+  }
+  handleError(error: string, []): any {
+    console.log(error);
+    return error;
+  }
    getAlliance() {
     return this.Alliance;
    }
