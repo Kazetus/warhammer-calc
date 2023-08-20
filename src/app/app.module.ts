@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -34,8 +35,9 @@ import { MatButtonModule } from '@angular/material/button';
     HttpClientModule,
     MatInputModule,
     MatButtonModule
-  ],
-  providers: [],
+    ],
+  providers: 
+  [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

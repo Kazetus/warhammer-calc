@@ -9,12 +9,14 @@ import { Observable, catchError, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class ArmyService {
-  ArmyListsArray: Army[] = [];
+  ArmyListsArray: Object[] = [];
   Alliance: Alliance[] =[];
   Faction: Faction[] = [];
   ArmyAdress = "public/army";
   optionRequete = {
-    headers: new HttpHeaders({ 
+    headers: new HttpHeaders({
+      "methods" : "get",
+      "mode":"cors",
       'Access-Control-Allow-Origin':'http://localhost:4200'
     })
   };
@@ -22,34 +24,16 @@ export class ArmyService {
     private http: HttpClient) {
 
    }
-  //  getArmy (): Observable<any>{
-  //         return this.http.get(environment.baseUrl + this.ArmyAdress, this.optionRequete)
-  //           .pipe(
-  //             tap((resultat) => console.log("Résultat de la requête : ",resultat)),
-  //             catchError(this.handleError('erreur lors de la requête CORS', []))
-  //           );
-  //   }
+  //  getArmy (): any{
+  //         return this.http.get<Object[]>(environment.baseUrl + this.ArmyAdress, this.optionRequete)
+  //         .subscribe(data => {
+  //           this.ArmyListsArray = data;
+  //           console.log(this.ArmyListsArray);
+  //           return this.ArmyListsArray;
+  //         });
+  // }
   getArmy() {
     fetch(environment.baseUrl + this.ArmyAdress,{mode:"cors"})
     .then(response => {response.json().then(data => {console.log(data)})});
   }
-  handleError(error: string, []): any {
-    console.log(error);
-    return error;
-  }
-   getAlliance() {
-    return this.Alliance;
-   }
-   getFaction() {
-    return this.Faction;
-   }
-   getUnits() {
-    let units = [];
-    for(let i = 0; i < this.ArmyListsArray.length; i++) {
-      for(let j=0; j < this.ArmyListsArray[i].units.length; j++) {
-        units.push(this.ArmyListsArray[i].units[j]);
-      }
-    }
-    return units;
-   }
 }

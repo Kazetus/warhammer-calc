@@ -9,13 +9,13 @@ main {
     margin: auto;
     padding: 1em 2em;
     border-radius: 5px;
-    box-shadow: #435667 0 0 10px;
+    box-shadow: #455660 0 0 10px;
 }
 
 form {
     padding: 1em;
     border-radius: 10px;
-    border:#435667 1px solid;
+    border:#455660 1px solid;
     display: flex;
     flex-direction: column;
 }
@@ -30,7 +30,7 @@ input {
     padding: 0.4rem;
     border-radius: 5px;
     border: none;
-    box-shadow: #435667 0 0 5px inset;
+    box-shadow: #455660 0 0 5px inset;
 }
 button {
     width: 150px;
@@ -39,20 +39,20 @@ button {
     border: none;
     align-self: center;
     background-color: #C0DB6E;
-    box-shadow: #435667 2px 2px 4px;
+    box-shadow: #455660 2px 2px 4px;
     cursor: pointer;
 }
 button:hover{
     color: #fafafa;
 }
 button:active{
-    box-shadow: #435667 0px 0px 4px;
+    box-shadow: #455660 0px 0px 4px;
 }
 .card p {
     text-align: center;
     margin: 1rem;
 }
 .card p a{
-    color:#435667;
-    text-decoration: #435667 underline solid;
+    color:#455660;
+    text-decoration: #455660 underline solid;
 }

@@ -1,6 +1,6 @@
 header {
     padding: 1rem 0;
-    background-color: #435667;
+    background-color: #455660;
     color: #fafafa;
 }
 .container {
@@ -22,7 +22,7 @@ li:first-child{
     border-left:#fafafa 1px solid;
 }
 li:hover a{
-    color: #435667;
+    color: #455660;
 }
 li:hover {
     background-color: #fafafa;
