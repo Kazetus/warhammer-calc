@@ -4,13 +4,13 @@ import { Units } from "./units.model";
 
 export class Army {
     id = 0;
-    name = "";
+    armyName = "";
     faction= "";
     alliance = "";
     units: Units[] = [];
 
     constructor(name: string, faction: Faction, alliance: Alliance) {
-        this.name = name;
+        this.armyName = name;
         this.faction = faction.name;
         this.alliance = alliance.name;
     }

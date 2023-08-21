@@ -3,7 +3,7 @@
         <section>
             <div>
                 <h1>Les armées</h1>
-                <table>
+                <table id="display">
                     <thead>
                         <tr>
                             <th>
@@ -17,13 +17,13 @@
                             </th>
                         </tr>
                     </thead>
-                    <!-- <tbody>
-                        <tr *ngFor="let army of armyList">
-                            <td>{{army}}</td>
-                            <td>{{army}}</td>
+                    <tbody>
+                        <tr *ngFor="let army of armyList$ | async">
+                            <td (click)="displayUnits(army)">{{army.armyName}}</td>
+                            <td>{{army.faction}}</td>
                             <td>{{ArmyPoints(army)}}</td>
                         </tr>
-                    </tbody> -->
+                    </tbody>
                 </table>
             </div>
         </section>

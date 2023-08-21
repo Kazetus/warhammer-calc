@@ -64,8 +64,8 @@ export class BuilderComponent implements OnInit{
     } else {
       this.addUnitsToArmy(units);
     }
-    if(this.myArmy.name != this.armyName.value.name) {
-      this.myArmy.name = this.armyName.value.name;
+    if(this.myArmy.armyName != this.armyName.value.name) {
+      this.myArmy.armyName = this.armyName.value.name;
     }
   }
   removeUnitsFromArmy(units: number) {
