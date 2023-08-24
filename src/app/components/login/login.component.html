@@ -1,7 +1,7 @@
 <main>
     <section class="card">
         <h1>Connexion</h1>
-        <form>
+        <form method="POST" action="https://localhost:8080/login">
                 <label for="username">Nom d'utilisateur</label>
                 <input type="text" id="username" name="username" placeholder="Nom d'utilisateur" [(ngModel)]="username">
                 <label for="password">Mot de passe</label>
