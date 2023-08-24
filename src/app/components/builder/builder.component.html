@@ -8,26 +8,31 @@
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="3"></th>
+                            <th class="headTable">{{myArmy.armyName}}</th>
+                            <th class="headTable">{{myArmy.faction}}</th>
+                            <th class="headTable">{{myArmy.alliance}}</th>
                         </tr>
+                </thead>
+                </table>
+                <table>
+                    <thead>
                         <tr>
                             <th>Nom de l'unité</th>
                             <th>Points</th>
-                            <th>Supprimer</th>
+                            <th class="rowdelete">Supprimer</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let units of myArmy.units; let index = index">
-                            <td>{{units.name}}</td>
+                            <td>{{units.unitsName}}</td>
                             <td>{{units.points}}</td>
-                            <td><button (click)="removeUnitsFromArmy(index)">Supprimer</button></td>
+                            <td class="rowdelete"><button class="delete" (click)="removeUnitsFromArmy(index)"><i class="fa-solid fa-trash-can"></i></button></td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr>
-                            <th>{{myArmy.armyName}}, {{myArmy.faction}}, {{myArmy.alliance}}</th>
+                            <th><button class="save" (click)="saveArmy(myArmy)">Enregistrer</button></th>
                             <th>{{ArmyPoints(myArmy)}}</th>
-                            <th>Enregistrer</th>
                         </tr>
                     </tbody>
                 </table>
@@ -35,8 +40,8 @@
             <form [formGroup]="allianceForm">
                 <label for="alliance">Alliance :</label>
                 <select name="alliance" id="alliance" formControlName="alliance">
-                    <option *ngFor="let alliance of alliances" [value]="alliance.name" value="{{alliance.name}}">
-                        {{alliance.name}}
+                    <option *ngFor="let alliance of alliances | async" [value]="alliance.allianceName" value="{{alliance.allianceName}}">
+                        {{alliance.allianceName}}
                     </option>
                 </select>
             </form>
@@ -44,8 +49,8 @@
                 <label for="alliance">Faction :</label>
                 <select name="faction" id="faction" formControlName="faction">
                     <option [value]="'choice'">Choisir une Faction</option>
-                    <option *ngFor="let faction of getFactionOfAlliance()">
-                        {{faction.name}}
+                    <option *ngFor="let faction of getFactionOfAlliance(alliances | async)">
+                        {{faction.factionName}}
                     </option>
                 </select> 
             </form>
@@ -69,15 +74,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let units of getUnitsOfFaction()">
+                        <tr *ngFor="let units of getUnitsOfFaction(faction | async)">
                             <td>
-                                {{units.name}}
+                                {{units.unitsName}}
                             </td>
                             <td>
                                 {{units.points}}
                             </td>
                             <td>
-                                <button (click)="editArmy(units)">Ajouter</button>
+                                <button class="add" (click)="editArmy(units)"><i class="fa-solid fa-plus"></i></button>
                             </td>
                         </tr>
                     </tbody>

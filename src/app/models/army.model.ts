@@ -11,7 +11,7 @@ export class Army {
 
     constructor(name: string, faction: Faction, alliance: Alliance) {
         this.armyName = name;
-        this.faction = faction.name;
-        this.alliance = alliance.name;
+        this.faction = faction.factionName;
+        this.alliance = alliance.allianceName;
     }
 }

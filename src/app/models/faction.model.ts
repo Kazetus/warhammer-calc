@@ -2,10 +2,10 @@ import { Units } from "./units.model";
 
 export class Faction {
     id = 0;
-    name = "";
+    factionName = "";
     units: Units[] = [];
 
     constructor(name: string) {
-        this.name = name;
+        this.factionName = name;
     }
 }

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ArmyService } from 'src/app/services/army/army.service';
 import { Army } from 'src/app/models/army.model';
-import { Units } from 'src/app/models/units.model';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -26,11 +24,6 @@ export class ArmyComponent implements OnInit {
   }
   ngOnInit(): void {
     this.armyList$ = this.http.get<Army[]>(environment.baseUrl + this.ArmyAdress, this.optionRequete);
-    this.armyList$.subscribe(
-      data => {
-        console.log(data);
-      }
-    )
   }
   ArmyPoints(army: any): number {
       let points= 0;
@@ -44,21 +37,37 @@ export class ArmyComponent implements OnInit {
     let content = display?.childNodes;
     if(display != null) {
       display.innerHTML=`
-      <thead>  
+      <thead>
+        <tr>
+          <th class="row">Nom de l'armée</th>
+          <th class="row">Factions</th>
+          <th class="row">Alliance</th>
+        </tr>
         <tr> 
-          <th colspan="3">${army.armyName}</th>
-          <th>${army.faction}</th>
-          <th>${army.alliance}</th>
+          <th class="rowhead">${army.armyName}</th>
+          <th class="rowhead">${army.faction}</th>
+          <th class="rowhead">${army.alliance}</th>
         </tr>
         <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+          <th class="row">Nom de l'unité</th>
+          <th class="row">points</th>
+          <th class="row">Nombre de figurine</th>
         </tr>
       </thead>
+      <tbody>
+      </tbody>
         `;
+        console.log(army);
+      for(let i = 0; i< army.units.length; i++) {
+        console.log(army.units[i].unitsName)
+        display.children[1].innerHTML += `
+        <tr>
+          <td class="row">${army.units[i].unitsName}</td>
+          <td class="row">${army.units[i].points}</td>
+          <td class="row">${army.units[i].nombreFigurine}</td>
+        </tr>
+        `;
+      }
     }
   }
 }

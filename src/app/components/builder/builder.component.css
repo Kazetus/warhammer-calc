@@ -13,7 +13,11 @@ form {
     text-align: center;
 }
 select {
+    padding: 0.1rem;
     width: 50%;
+}
+input {
+    padding: 0.1rem;
 }
 label {
     margin: 0.5rem auto;
@@ -36,9 +40,35 @@ td, th {
     border-collapse: collapse;
     border: #455660 1px solid;
     padding: 1rem;
-    width: 33%;
+    width: 40%;
     text-align: center;
+}
+.rowdelete {
+    width: 20%;
+}
+.headTable {
+    border: #455660 2px solid;
+    width: 33%;
 }
 .army{
     width: 80%;
+}
+button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+}
+.save {
+    width: auto;
+    height: auto;
+    padding: 0.3rem;
+    background-color: #2AA9BD;
+    font-size: 1.3rem;
+}
+.delete {
+    background-color: #d96969;
+}
+.add {
+    font-size: 2rem;
+    background-color: #C0DB6E;
 }

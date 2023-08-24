@@ -35,3 +35,33 @@ h1 {
     margin: 1rem 0;
     text-align: center;
 }
+button {
+    border-radius: 5px;
+    border: none;
+    align-self: center;
+    box-shadow: #455660 2px 2px 4px;
+    cursor: pointer;
+}
+button:hover{
+    color: #fafafa;
+}
+button:active{
+    box-shadow: #455660 0px 0px 4px;
+}
+.row, .rowhead {
+    border: #455660 1px solid;
+    padding: 1rem;
+    width: 33%;
+    text-align: center;
+}
+.rowhead {
+    font-weight: normal;
+}
+.modal {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    margin: 2rem 1rem;
+    border-radius: 10px;
+    box-shadow: #435667 1px 1px 10px;
+}

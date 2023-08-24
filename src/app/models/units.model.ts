@@ -1,10 +1,12 @@
 
 export class Units {
     id= 0;
-    name = "";
+    unitsName = "";
     points = 0;
-    constructor(name: string, points: number) {
-        this.name = name;
+    nombreFigurine= 0;
+    constructor(name: string, points: number, nombreFigurine: number) {
+        this.unitsName = name;
         this.points = points;
+        this.nombreFigurine = nombreFigurine;
     }
 }

@@ -1,14 +1,21 @@
 <main>
     <section class="card">
         <h1>Inscription</h1>
-        <form method="POST" action="https://localhost:8080/register">
+        <form method="POST" action="https://localhost:8080/register" [formGroup]="registerForm" (ngSubmit)="registerUser()">
                 <label for="username">Nom d'utilisateur</label>
-                <input type="text" id="username" name="username" placeholder="Nom d'utilisateur">
+                <input (change)="checkUsername()" type="text" id="username" name="username" formControlName="username" placeholder="Nom d'utilisateur">
+                <p *ngIf="submitted && this.f['username'].errors">Le nom d'utilisateur n'est pas valide</p>
+                <p *ngIf="check | async">Le nom d'utilisateur est déjà pris.</p>
                 <label for="mail">Adresse E-mail</label>
-                <input type="email" id="mail" name="mail" placeholder="Adresse E-mail">
+                <input type="email" id="mail" name="mail" formControlName="mail" placeholder="Adresse E-mail" >
+                <p *ngIf="submitted && this.f['mail'].errors">L'adresse E-mail n'est pas valide</p>
                 <label for="password">Mot de passe</label>
-                <input type="password" id="password" name="password" placeholder="Mot de passe">
-                <button type="submit">Inscription</button>
+                <input type="password" id="password" name="password" formControlName="password" placeholder="Mot de passe">
+                <p *ngIf="submitted && this.f['password'].errors">Le mot de passe n'est pas valide</p>
+                <label for="passwordConfirmation">Confirmation du Mot de passe</label>
+                <input type="password" id="passwordConfirmation" name="passwordConfirmation" formControlName="passwordConfirmation" placeholder="Confirmer votre Mot de passe">
+                <p *ngIf="submitted && this.registerForm.errors != null">Les mots de passe ne correspondent pas</p>
+                <button *ngIf="verify(check | async)" id="confirm" type="submit" class="green">Inscription</button>
         </form>
         <p>Déjà inscrit ? <a [routerLink]="['/login']" href="/login">Connectez-vous.</a></p>
     </section>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {CookieService} from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
  
@@ -7,9 +8,10 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class SessionLoginService {
-  LOGIN_URL = '/login';
+  LOGIN_URL = 'login';
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private cookieService: CookieService
   ) { }
 
   login(pUsername: string, pPassword: string) {
@@ -19,8 +21,11 @@ export class SessionLoginService {
     }
     return new Observable<boolean>((observer) => 
     {
-      this.httpClient.post(environment.baseUrl + this.LOGIN_URL, loginData).subscribe({next: result => {
+      this.httpClient.post(environment.baseUrl + this.LOGIN_URL, loginData).subscribe({next: (result: any) => {
         observer.next(true);
+        const token = result.token;
+        this.cookieService.delete("authorization");
+        this.cookieService.set("authorization", token);
         observer.complete();
       },error: error => {
         observer.error(false);

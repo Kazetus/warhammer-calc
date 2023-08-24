@@ -6,22 +6,22 @@
                 <table id="display">
                     <thead>
                         <tr>
-                            <th>
+                            <th class="row">
                                 Nom de l'armée
                             </th>
-                            <th>
+                            <th class="row">
                                 Factions
                             </th>
-                            <th>
+                            <th class="row">
                                 Points
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let army of armyList$ | async">
-                            <td (click)="displayUnits(army)">{{army.armyName}}</td>
-                            <td>{{army.faction}}</td>
-                            <td>{{ArmyPoints(army)}}</td>
+                            <td class="row" (click)="displayUnits(army)">{{army.armyName}}</td>
+                            <td class="row">{{army.faction}}</td>
+                            <td class="row">{{ArmyPoints(army)}}</td>
                         </tr>
                     </tbody>
                 </table>

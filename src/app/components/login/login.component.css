@@ -35,18 +35,7 @@ input {
 button {
     width: 150px;
     padding: 0.2rem;
-    border-radius: 5px;
-    border: none;
-    align-self: center;
     background-color: #C0DB6E;
-    box-shadow: #455660 2px 2px 4px;
-    cursor: pointer;
-}
-button:hover{
-    color: #fafafa;
-}
-button:active{
-    box-shadow: #455660 0px 0px 4px;
 }
 .card p {
     text-align: center;

@@ -37,9 +37,14 @@ button {
     border-radius: 5px;
     border: none;
     align-self: center;
-    background-color: #C0DB6E;
     box-shadow: #455660 2px 2px 4px;
     cursor: pointer;
+}
+.green {
+    background-color: #C0DB6E;
+}
+.red {
+    background-color: #d96969;
 }
 button:hover{
     color: #fafafa;
