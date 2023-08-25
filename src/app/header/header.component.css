@@ -14,11 +14,12 @@ header {
     display: flex;
     justify-content: space-between;
 }
-li{
+li a{
+    display: block;
     border-right:#fafafa 1px solid;
     padding: 1rem;
 }
-li:first-child{
+li:first-child a{
     border-left:#fafafa 1px solid;
 }
 li:hover a{

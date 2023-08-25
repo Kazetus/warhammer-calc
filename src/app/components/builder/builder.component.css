@@ -9,6 +9,10 @@ h1 {
     text-align: center;
 }
 form {
+    width: 100%;
+}
+form div{
+    display: inline-block;
     width: 30%;
     text-align: center;
 }
@@ -40,15 +44,15 @@ td, th {
     border-collapse: collapse;
     border: #455660 1px solid;
     padding: 1rem;
-    width: 40%;
+    width: 33%;
     text-align: center;
-}
-.rowdelete {
-    width: 20%;
 }
 .headTable {
     border: #455660 2px solid;
     width: 33%;
+}
+.units th, .units td{
+    width: 25%;
 }
 .army{
     width: 80%;

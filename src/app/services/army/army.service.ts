@@ -19,7 +19,7 @@ export class ArmyService {
     private http: HttpClient) {
 
    }
-   getArmy (): Observable<Army[]>{
+  getArmy (): Observable<Army[]>{
     return this.http.get<Army[]>(environment.baseUrl + this.ArmyAdress, this.optionRequete)
   }
 }
