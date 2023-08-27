@@ -3,6 +3,7 @@ import { Army } from 'src/app/models/army.model';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ArmyService } from 'src/app/services/army/army.service';
 
 @Component({
   selector: 'app-army',
@@ -19,11 +20,11 @@ export class ArmyComponent implements OnInit {
       'Access-Control-Allow-Origin':'http://localhost:4200'
     })
   };
-  constructor(private http: HttpClient) {
-    this.armyList$ = this.http.get<Army[]>(environment.baseUrl + this.ArmyAdress, this.optionRequete);
+  constructor(private http: HttpClient, private armyService: ArmyService) {
+    this.armyList$= this.armyService.getArmy();
   }
   ngOnInit(): void {
-    this.armyList$ = this.http.get<Army[]>(environment.baseUrl + this.ArmyAdress, this.optionRequete);
+    this.armyList$= this.armyService.getArmy();
   }
   ArmyPoints(army: any): number {
       let points= 0;
@@ -34,7 +35,6 @@ export class ArmyComponent implements OnInit {
   }
   displayUnits(army: Army) {
     let display = document.getElementById("display");
-    let content = display?.childNodes;
     if(display != null) {
       display.innerHTML=`
       <thead>

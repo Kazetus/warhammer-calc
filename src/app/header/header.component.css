@@ -19,12 +19,14 @@ li a{
     border-right:#fafafa 1px solid;
     padding: 1rem;
 }
+.active {
+    background-color: #fafafa;
+    color: #455660;
+}
 li:first-child a{
     border-left:#fafafa 1px solid;
 }
-li:hover a{
+a:hover{
     color: #455660;
-}
-li:hover {
     background-color: #fafafa;
 }

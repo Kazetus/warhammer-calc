@@ -26,7 +26,7 @@ a {
     max-width: 1200px;
     margin: 0 auto;
 }
-section {
+section, aside {
     margin: 2rem 1rem;
     border-radius: 10px;
     box-shadow: #435667 1px 1px 10px;
@@ -64,4 +64,10 @@ button:active{
     margin: 2rem 1rem;
     border-radius: 10px;
     box-shadow: #435667 1px 1px 10px;
+}
+table {
+    padding: 1rem;
+    width: 65%;
+    margin: 1rem auto;
+    border-collapse: collapse;
 }

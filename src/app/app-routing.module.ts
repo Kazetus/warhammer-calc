@@ -5,6 +5,7 @@ import { ArmyComponent} from './components/army/army.component';
 import { BuilderComponent} from './components/builder/builder.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ProfilComponent } from './components/profil/profil.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: "builder",
     component: BuilderComponent
+  },
+  {
+    path: "profil",
+    component: ProfilComponent
   }
 ];
 

@@ -10,6 +10,7 @@ import { ArmyComponent } from './components/army/army.component';
 import { BuilderComponent } from './components/builder/builder.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ProfilComponent } from './components/profil/profil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
@@ -25,7 +26,8 @@ import { CookieService } from 'ngx-cookie-service';
     ArmyComponent,
     BuilderComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,

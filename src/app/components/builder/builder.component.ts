@@ -62,7 +62,7 @@ export class BuilderComponent implements OnInit{
   }
   addUnitsToArmy(units: Units) {
     this.myArmy.units.push(units);
-    localStorage.setItem('myArmy', JSON.stringify(this.myArmy));
+    this.localSaveArmy(this.myArmy);
   }
   editArmy (units: Units) {
     if(this.myArmy.units.length == 0) {
@@ -88,7 +88,7 @@ export class BuilderComponent implements OnInit{
     this.localSaveArmy(this.myArmy);
   }
   localSaveArmy(army: Army) {
-    localStorage.setItem('myArmy', JSON.stringify(this.myArmy));
+    localStorage.setItem('myArmy', JSON.stringify(army));
   }
   saveArmy(army: Army) {
     this.builderService.setArmy(army).subscribe(data => {

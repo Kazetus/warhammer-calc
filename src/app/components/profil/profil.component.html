@@ -1,0 +1,35 @@
+<main>
+    <div class="container">
+        <section>
+            <h1>Mes armées</h1>
+            <table id="display">
+                <thead>
+                    <tr>
+                        <th class="row">
+                            Nom de l'armée
+                        </th>
+                        <th class="row">
+                            Factions
+                        </th>
+                        <th class="row">
+                            Points
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let army of user.army">
+                        <td class="row" (click)="displayUnits(army)">{{army.armyName}}</td>
+                        <td class="row">{{army.faction}}</td>
+                        <td class="row">{{ArmyPoints(army)}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>    
+        <aside>
+            <h2>Mon Profil</h2>
+            <p>Nom d'utilisateur : <span *ngIf="user">{{user.username}}</span></p>
+            <p>Addresse Mail : <span *ngIf="user"> {{user.mail}}</span></p>
+
+        </aside>
+    </div>
+</main>

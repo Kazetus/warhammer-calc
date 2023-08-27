@@ -3,6 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { RegisterService } from 'src/app/services/register/register.service';
+import { SessionLoginService } from 'src/app/services/session-login/session-login.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent {
   registerForm: FormGroup;
   submitted = false;
   check: Observable<Boolean> | undefined;
-  constructor( private registerService: RegisterService, private router: Router) {
+  constructor( private registerService: RegisterService, private sessionLogin: SessionLoginService, private router: Router) {
     this.registerForm = new FormGroup ( {
       'username': new FormControl('', Validators.required),
       'mail': new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
@@ -27,6 +28,11 @@ export class RegisterComponent {
     this.check = new Observable;
   }
   ngOnInit() {
+    this.sessionLogin.checkUser().subscribe(result => {
+      if(result) {
+        this.router.navigate(['/']);
+      }
+    })
   }
   registerUser() {
     this.submitted = true;

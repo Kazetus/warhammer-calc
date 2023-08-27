@@ -12,18 +12,22 @@ export class LoginComponent implements OnInit{
   password = '';
   wrongCredentials = false;
 
-  constructor( private sessionLogin: SessionLoginService, private router: Router) {
+  constructor( private sessionLogin: SessionLoginService, private router: Router,) {
 
   }
   ngOnInit(): void{
-
+    this.sessionLogin.checkUser().subscribe(result => {
+      if(result) {
+        this.router.navigate(['/']);
+      }
+    })
   }
   login() {
     this.wrongCredentials = false;
     this.sessionLogin.login(this.username, this.password).subscribe({next :result => {
-      this.router.navigate(['/'])
+      location.reload();
     },error: error => {
-      this.wrongCredentials = true
+      this.wrongCredentials = true;
     }})
   }
 }

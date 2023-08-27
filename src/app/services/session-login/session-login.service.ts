@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class SessionLoginService {
   LOGIN_URL = 'login';
+  CHECK_URL = 'check';
   constructor(
     private httpClient: HttpClient,
     private cookieService: CookieService
@@ -25,7 +26,9 @@ export class SessionLoginService {
         observer.next(true);
         const token = result.token;
         this.cookieService.delete("authorization");
-        this.cookieService.set("authorization", token);
+        let expired = new Date();
+        expired.setMinutes(expired.getMinutes() + 30);
+        this.cookieService.set("authorization", token, expired);
         observer.complete();
       },error: error => {
         observer.error(false);
@@ -33,15 +36,32 @@ export class SessionLoginService {
       }})
     }) 
   }
-  // logout() {
-  //   return new Observable<boolean>((observer) => {
-  //     this.httpClient.get(environment.baseUrl + this.LOGOUT_URL).subscribe( result => {
-  //       observer.next(true);
-  //       observer.complete();
-  //     }, error => {
-  //       observer.error(false);
-  //       observer.complete();
-  //     })
-  //   })
-  // }
+  checkUser(){
+    let token = this.cookieService.get("authorization");
+    if(token) {
+      let optionsRequete = {
+        headers: new HttpHeaders({
+          "methods" : "get",
+          "mode":"cors",
+          'Access-Control-Allow-Origin':'http://localhost:4200',
+          "Authorization" : "Bearer " + token
+        })
+      };
+      return new Observable<boolean>((observer) => {
+        this.httpClient.get(environment.baseUrl + this.CHECK_URL, optionsRequete).subscribe({next: (result: any) => {
+          observer.next(true);
+          observer.complete();
+        }, error: error => {
+          observer.error(error);
+          this.cookieService.delete("authorization");
+          observer.complete();
+        }})
+      })
+    } else {
+      return new Observable<boolean>((observer) => {
+        observer.next(false);
+        observer.complete();
+      })
+    }
+  }
 }

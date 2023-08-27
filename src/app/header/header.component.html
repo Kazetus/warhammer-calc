@@ -3,18 +3,26 @@
         <p class="title">Warhammer My Army</p>
         <nav>
             <ul class="navBar">
-                <li><a [routerLink]="['/']" href="/">Accueil</a></li>
                 <li>
-                    <a [routerLink]="['/builder']" href="/builder">Création d'armée</a>
+                    <a [class.active]="displayActivePage('/')" [routerLink]="['/']" href="/">Accueil</a>
                 </li>
                 <li>
-                    <a href="/army">Armées</a>
+                    <a [class.active]="displayActivePage('/builder')" [routerLink]="['/builder']" href="/builder">Création d'armée</a>
                 </li>
                 <li>
-                    <a [routerLink]="['/login']" href="/login">Connexion</a>
+                    <a [class.active]="displayActivePage('/army')" [routerLink]="['/army']" href="/army">Armées</a>
                 </li>
                 <li>
-                    <a [routerLink]="['/register']" href="/register">Inscription</a>
+                    <a [class.active]="displayActivePage('/login')" *ngIf="!userConnected(connected | async)" [routerLink]="['/login']" href="/login">Connexion</a>
+                </li>
+                <li>
+                    <a [class.active]="displayActivePage('/register')" *ngIf="!userConnected(connected | async)" [routerLink]="['/register']" href="/register">Inscription</a>
+                </li>
+                <li>
+                    <a [class.active]="displayActivePage('/profil')" *ngIf="userConnected(connected | async)" [routerLink]="['/profil']" href="/profil">Profil</a>
+                </li>
+                <li>
+                    <a *ngIf="userConnected(connected | async)" [routerLink]="['/']" href="/home" (click)="logout()">Déconnexion</a>
                 </li>
             </ul>
         </nav>

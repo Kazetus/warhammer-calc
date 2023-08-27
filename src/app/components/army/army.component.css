@@ -2,12 +2,7 @@ section {
     display: flex;
     width: 100%;
 }
-table {
-    padding: 1rem;
-    width: 65%;
-    margin: 1rem auto;
-    border-collapse: collapse;
-}
+
 
 section div {
     width: 100%;
