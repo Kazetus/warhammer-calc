@@ -1,5 +1,5 @@
 section{
-    margin: 0 auto;
+    margin: 1rem auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;

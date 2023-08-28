@@ -1,9 +1,10 @@
 import { Army } from "./army.model";
 
 export class User {
-    id = 0;
+    idUser = 0;
     username = "";
     mail = "";
+    password= "";
     army: Army[] = [];
 
     constructor(name: string, mail: string) {

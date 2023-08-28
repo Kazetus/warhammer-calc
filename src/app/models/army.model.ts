@@ -3,7 +3,7 @@ import { Faction } from "./faction.model";
 import { Units } from "./units.model";
 
 export class Army {
-    id = 0;
+    idArmy = 0;
     armyName = "";
     faction= "";
     alliance = "";
