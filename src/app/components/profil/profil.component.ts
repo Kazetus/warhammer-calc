@@ -146,7 +146,6 @@ export class ProfilComponent implements OnInit{
     }
   }
   updateUser() {
-    console.log("Addresse mail : " + this.v.mail);
     this.submitted = true;
     this.profilService.checkPassword(this.user.username, this.v.oldPassword).subscribe( (data: any) => {
       this.saveTest(data);

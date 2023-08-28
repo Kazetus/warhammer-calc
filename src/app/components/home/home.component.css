@@ -17,6 +17,18 @@ section .intro {
     border: #2AA9BD 1px solid;
     box-shadow: #455660 0 0 15px;
 }
+.img1 {
+    order:1;
+}
+.img2 {
+    order:3;
+}
+.army {
+    order:4;
+}
+.builder {
+    order:5;
+}
 section div p,section article p {
     width: 60%;
     margin: 1rem auto;
@@ -51,4 +63,21 @@ button:active {
 h2 {
     margin: 1rem;
     text-align: center;
+}
+@media screen and (max-width: 720px) {
+    section {
+        padding: 1rem ;
+    }
+    section .intro, section .img1, section .img2, section .army, section .builder {
+        width: 100%;
+    }
+    .img2 {
+        order: 5;
+    }
+    .army {
+        order: 3;
+    }
+    .builder {
+        order: 4;
+    }
 }

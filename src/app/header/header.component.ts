@@ -39,4 +39,10 @@ export class HeaderComponent implements OnInit{
       observer.complete();
     })
   }
+  displayNavBar() {
+    let nav = document.getElementById("navBar");
+    if(nav != null) {
+      nav.classList.toggle("display");
+    }
+  }
 }

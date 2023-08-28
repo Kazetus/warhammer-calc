@@ -68,8 +68,6 @@ export class ProfilService {
   }
   remove(id: number) {
     let token = this.cookieService.get("authorization");
-    console.log(token);
-    console.log(id);
     this.optionRequete = {
       headers: new HttpHeaders({
         "methods" : "delete",
@@ -78,7 +76,6 @@ export class ProfilService {
         "Authorization" : "Bearer " + token
       })
     };
-    console.log(environment.baseUrl + this.DELETE_URL + id);
     return this.http.delete(environment.baseUrl + this.DELETE_URL + id, this.optionRequete).subscribe();
   }
 }

@@ -2,7 +2,7 @@
     <div class="container">
         <p class="title">Warhammer My Army</p>
         <nav>
-            <ul class="navBar">
+            <ul class="navBar" id="navBar">
                 <li>
                     <a [class.active]="displayActivePage('/')" [routerLink]="['/']" href="/">Accueil</a>
                 </li>
@@ -26,5 +26,6 @@
                 </li>
             </ul>
         </nav>
+        <button class="burger" id="burger" (click)="displayNavBar()"><i class="fa-solid fa-bars"></i></button>
     </div>
 </header>

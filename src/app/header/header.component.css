@@ -18,6 +18,7 @@ li a{
     display: block;
     border-right:#fafafa 1px solid;
     padding: 1rem;
+    background-color: #455660;
 }
 .active {
     background-color: #fafafa;
@@ -29,4 +30,38 @@ li:first-child a{
 a:hover{
     color: #455660;
     background-color: #fafafa;
+}
+.burger {
+    display: none;
+}
+@media screen and (max-width: 720px){
+    .container {
+        max-width: 600px;
+        padding: 0 1rem;
+    }
+    .navBar {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        right:-1px; top:60px;
+        width: 101%;
+        text-align: center;
+    }
+    li a{
+        color: #fafafa;
+        border-bottom: #fafafa 1px solid;
+        padding: 2rem 0;
+    }
+    .burger {
+        display: inline-block;
+        border: #fafafa 1px solid;
+        background-color: #455660;
+        color:#fafafa;
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+    .display {
+        display: flex;
+    }
 }
