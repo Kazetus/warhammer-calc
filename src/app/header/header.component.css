@@ -18,16 +18,17 @@ li a{
     display: block;
     border-right:#fafafa 1px solid;
     padding: 1rem;
+    color: #fafafa;
     background-color: #455660;
 }
-.active {
+li .active {
     background-color: #fafafa;
     color: #455660;
 }
 li:first-child a{
     border-left:#fafafa 1px solid;
 }
-a:hover{
+li a:hover{
     color: #455660;
     background-color: #fafafa;
 }

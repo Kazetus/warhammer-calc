@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { Army } from 'src/app/models/army.model';
 import { User } from 'src/app/models/user.model';
@@ -20,7 +21,7 @@ export class ProfilComponent implements OnInit{
   testPassword: Boolean;
   check: Observable<Boolean> | undefined;
   checked: Boolean;
-  constructor(private profilService: ProfilService, private registerService: RegisterService) {
+  constructor(private profilService: ProfilService, private registerService: RegisterService, private cookieService: CookieService) {
     this.user$ = this.profilService.getUser();
     this.user = new User("", "");
     this.submitted = false;
@@ -40,9 +41,11 @@ export class ProfilComponent implements OnInit{
     this.check = new Observable;
   }
   ngOnInit() {
-    this.user$.subscribe(data => {
-      this.saveUser(data);
-    });
+    if(this.cookieService.get("Authorization")) {
+      this.user$.subscribe(data => {
+        this.saveUser(data);
+      });
+    }
   }
   saveUser(user: User) {
     this.user = user;

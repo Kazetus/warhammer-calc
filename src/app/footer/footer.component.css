@@ -3,8 +3,6 @@ footer {
     background-color: #455660;
     color: #fafafa;
     width: 100%;
-    position: sticky;
-    bottom:0;
 }
 .container {
     display: flex;
