@@ -118,7 +118,6 @@ export class ProfilComponent implements OnInit{
   }
   saveTest(data: Boolean) {
     this.testPassword = data;
-    console.log(this.updateForm.invalid);
     if(this.v.username == "") {
       this.updateForm.value.username = this.user.username;
     }
@@ -126,7 +125,6 @@ export class ProfilComponent implements OnInit{
       this.updateForm.value.mail = this.user.mail;
       
     }
-    console.log(this.v.mail);
     if(this.updateForm.invalid) {
       return;
     }
