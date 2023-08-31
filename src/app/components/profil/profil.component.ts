@@ -22,7 +22,7 @@ export class ProfilComponent implements OnInit{
   check: Observable<Boolean> | undefined;
   checked: Boolean;
   constructor(private profilService: ProfilService, private registerService: RegisterService, private cookieService: CookieService) {
-    this.user$ = this.profilService.getUser();
+    this.user$ = this.profilService.getUser()
     this.user = new User("", "");
     this.submitted = false;
     this.checked= false;
@@ -41,7 +41,8 @@ export class ProfilComponent implements OnInit{
     this.check = new Observable;
   }
   ngOnInit() {
-    if(this.cookieService.get("Authorization")) {
+    if(this.cookieService.get("Authorization") != null) {
+      this.user$ = this.profilService.getUser();
       this.user$.subscribe(data => {
         this.saveUser(data);
       });
