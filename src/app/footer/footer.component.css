@@ -22,3 +22,21 @@ footer {
     font-size: 0.7rem;
     text-align: justify;
 }
+@media screen and (max-width: 720px){
+    .container {
+        max-width: 600px;
+        padding: 0 1rem;
+        flex-direction: column;
+    }
+    .title, .law, .copyright {
+        width: 80%;
+        align-self: center;
+        padding: 1rem 0;
+    }
+    .law {
+        border: #fafafa 1px solid ;
+        border-left: none;
+        border-right:none;
+        text-align: center;
+    }
+}
