@@ -49,6 +49,7 @@
               "outputHashing": "all"
             },
             "development": {
+              "aot" : false,
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
