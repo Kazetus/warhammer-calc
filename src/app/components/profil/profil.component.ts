@@ -84,7 +84,6 @@ export class ProfilComponent implements OnInit{
       <tbody>
       </tbody>
         `;
-        console.log(army);
       for(let i = 0; i< army.units.length; i++) {
         console.log(army.units[i].unitsName)
         display.children[1].innerHTML += `

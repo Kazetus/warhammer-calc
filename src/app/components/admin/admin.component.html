@@ -1,0 +1,30 @@
+<main>
+    <div class="container">
+        <section>
+            <h1>Panel Admin</h1>
+            <article>
+                <h2>Alliance</h2>
+                <div *ngFor="let alliance of alliances | async">
+                    <input type="text" name="{{alliance.allianceName}}" id="{{alliance.allianceName}}" value="{{alliance.allianceName}}">
+                    <button (click)="save(alliance)"><i class="fa-solid fa-pen-nib"></i></button>
+                    <button (click)="delete(alliance)"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </article>
+            <article>
+                <h2>Faction</h2>
+                <div *ngFor="let faction of factions | async">
+                    <input type="text" name="{{faction.factionName}}" id="{{faction.factionName}}" value="{{faction.factionName}}">
+
+                    <button (click)="save(faction)"><i class="fa-solid fa-pen-nib"></i></button>
+                    <button (click)="delete(faction)"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </article>
+            <article>
+                <h2>Unités</h2>
+                <div>
+                    <button *ngFor="let faction of factions | async">{{faction.factionName}}</button>
+                </div>
+            </article>
+        </section>
+    </div>
+</main>

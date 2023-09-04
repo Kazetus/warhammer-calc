@@ -1,0 +1,11 @@
+section {
+    padding: 1rem;
+} 
+h1 {
+    font-size: 2rem;
+}
+p {
+    padding: 1rem;
+    color: #d96969;
+    font-size: 1.6rem;
+}

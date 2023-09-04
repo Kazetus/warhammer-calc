@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { User } from 'src/app/models/user.model';
  
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export class SessionLoginService {
   LOGIN_URL = 'login';
   CHECK_URL = 'check';
+  ROLE_URL = 'user/role';
   constructor(
     private httpClient: HttpClient,
     private cookieService: CookieService
@@ -35,6 +37,34 @@ export class SessionLoginService {
         observer.complete();
       }})
     }) 
+  }
+  getUserRole() {
+    const token = this.cookieService.get("authorization");
+    if(token) {
+      let optionsRequete = {
+        headers: new HttpHeaders({
+          "methods" : "get",
+          "mode":"cors",
+          'Access-Control-Allow-Origin':'http://localhost:4200',
+          "Authorization" : "Bearer " + token
+        })
+      };
+      return new Observable<number>((observer) => {
+        this.httpClient.get(environment.baseUrl + this.ROLE_URL, optionsRequete).subscribe({next: (result: any) => {
+          observer.next(result);
+          observer.complete;
+        }, error: error => {
+          observer.next(0);
+          observer.complete;
+        }
+        });
+      });
+    } else {
+      return new Observable<number>((observer) => {
+        observer.next(0);
+        observer.complete();
+      })
+    }
   }
   checkUser(){
     let token = this.cookieService.get("authorization");
