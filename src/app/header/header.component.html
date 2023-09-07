@@ -4,25 +4,25 @@
         <nav>
             <ul class="navBar" id="navBar">
                 <li>
-                    <a [class.active]="displayActivePage('/')" [routerLink]="['/']" href="/">Accueil</a>
+                    <a [class.active]="displayActivePage('/')" (click)="displayNavBar()" [routerLink]="['/']" href="/">Accueil</a>
                 </li>
                 <li>
-                    <a [class.active]="displayActivePage('/builder')" [routerLink]="['/builder']" href="/builder">Création d'armée</a>
+                    <a [class.active]="displayActivePage('/builder')" (click)="displayNavBar()" [routerLink]="['/builder']" href="/builder">Création d'armée</a>
                 </li>
                 <li>
-                    <a [class.active]="displayActivePage('/army')" [routerLink]="['/army']" href="/army">Armées</a>
+                    <a [class.active]="displayActivePage('/army')" (click)="displayNavBar()" [routerLink]="['/army']" href="/army">Armées</a>
                 </li>
                 <li>
-                    <a [class.active]="displayActivePage('/login')" *ngIf="!userConnected(connected | async)" [routerLink]="['/login']" href="/login">Connexion</a>
+                    <a [class.active]="displayActivePage('/login')" (click)="displayNavBar()" *ngIf="!userConnected(connected | async)" [routerLink]="['/login']" href="/login">Connexion</a>
                 </li>
                 <li>
-                    <a [class.active]="displayActivePage('/register')" *ngIf="!userConnected(connected | async)" [routerLink]="['/register']" href="/register">Inscription</a>
+                    <a [class.active]="displayActivePage('/register')" (click)="displayNavBar()" *ngIf="!userConnected(connected | async)" [routerLink]="['/register']" href="/register">Inscription</a>
                 </li>
                 <li>
-                    <a [class.active]="displayActivePage('/profil')" *ngIf="userConnected(connected | async)" [routerLink]="['/profil']" href="/profil">Profil</a>
+                    <a [class.active]="displayActivePage('/profil')" (click)="displayNavBar()" *ngIf="userConnected(connected | async)" [routerLink]="['/profil']" href="/profil">Profil</a>
                 </li>
                 <li>
-                    <a *ngIf="userConnected(connected | async)" [routerLink]="['/']" href="/home" (click)="logout()">Déconnexion</a>
+                    <a *ngIf="userConnected(connected | async)" (click)="displayNavBar()" [routerLink]="['/']" href="/home" (click)="logout()">Déconnexion</a>
                 </li>
             </ul>
         </nav>
