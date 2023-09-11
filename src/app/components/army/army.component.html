@@ -17,11 +17,16 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr *ngFor="let army of armyList$ | async">
-                            <td class="row" (click)="displayUnits(army)">{{army.armyName}}</td>
+                    <tbody *ngFor="let army of armyList$ | async; let index = index">
+                        <tr>
+                            <td class="row armyName" (click)="displayUnits(index)"><i class="arrow fa-solid fa-chevron-right"></i> {{army.armyName}}</td>
                             <td class="row">{{army.faction}}</td>
                             <td class="row">{{ArmyPoints(army)}}</td>
+                        </tr>
+                        <tr class="disable unitsList{{index}}" *ngFor="let unit of army.units">
+                            <td class="unitsRow">{{unit.unitsName}}</td>
+                            <td class="unitsRow">{{unit.nombreFigurine}}</td>
+                            <td class="unitsRow">{{unit.points}}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -60,13 +60,7 @@ button {
 .delete {
     background-color: #d96969;
 }
-.disable{
-    display: none;
-}
 .add {
     font-size: 2rem;
     background-color: #C0DB6E;
-}
-.unitsRow{
-    border: #455660 1px solid;
 }

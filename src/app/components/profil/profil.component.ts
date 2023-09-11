@@ -3,7 +3,10 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { Army } from 'src/app/models/army.model';
+import { Faction } from 'src/app/models/faction.model';
+import { Units } from 'src/app/models/units.model';
 import { User } from 'src/app/models/user.model';
+import { BuilderService } from 'src/app/services/builder/builder.service';
 import { ProfilService } from 'src/app/services/profil/profil.service'
 import { RegisterService } from 'src/app/services/register/register.service';
 
@@ -21,12 +24,14 @@ export class ProfilComponent implements OnInit{
   testPassword: Boolean;
   check: Observable<Boolean> | undefined;
   checked: Boolean;
-  constructor(private profilService: ProfilService, private registerService: RegisterService, private cookieService: CookieService) {
+  faction$: Observable<Faction[]>;
+  constructor(private builderService: BuilderService, private profilService: ProfilService, private registerService: RegisterService, private cookieService: CookieService) {
     this.user$ = this.profilService.getUser()
     this.user = new User("", "");
     this.submitted = false;
     this.checked= false;
     this.testPassword = false;
+    this.faction$ = this.builderService.getFaction();
     this.updateForm = new FormGroup ( {
       'username': new FormControl('', Validators.required),
       'mail': new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$")]),
@@ -47,6 +52,9 @@ export class ProfilComponent implements OnInit{
         this.saveUser(data);
       });
     }
+    this.faction$.subscribe(data => {
+      console.log(data);
+    })
   }
   saveUser(user: User) {
     this.user = user;
@@ -65,6 +73,9 @@ export class ProfilComponent implements OnInit{
     for(let i = 0; i < display.length; i++) {
       display[i].classList.toggle("disable");
     }
+    let chevron = document.getElementsByClassName("arrow");
+    chevron[index].classList.toggle("fa-chevron-right");
+    chevron[index].classList.toggle("fa-chevron-down");
   }
   get v() {
     return this.updateForm.value;
@@ -72,8 +83,16 @@ export class ProfilComponent implements OnInit{
   get f() {
     return this.updateForm.controls;
   }
-  removeUnitsFromArmy(army: Army,index: number) {
-    console.log(army.units[index]);
+  reloadUserData() {
+    this.user$ = this.profilService.getUser();
+    this.user$.subscribe(data => {
+      this.saveUser(data);
+    });
+  }
+  removeUnitsFromArmy(id: number) {
+    this.profilService.removeUnits(id).subscribe(data => {
+      this.reloadUserData();
+    });
   }
   checkUsername() {
     this.checked= true;
@@ -127,5 +146,20 @@ export class ProfilComponent implements OnInit{
   removeArmy(id: number) {
     this.profilService.remove(id);
     location.reload();
+  }
+  filterFaction(army: Army, faction?: Faction[] | null)  {
+    if(faction != null) {
+      let unit = faction.filter(faction => faction.factionName === army.faction);
+      return unit[0].units;
+    } else {
+      return null;
+    }
+  }
+  addUnitsToArmy(army: Army, units: Units) {
+    console.log(army.idArmy);
+    console.log(units.idUnits);
+    this.profilService.addUnits(army.idArmy, units.idUnits).subscribe(data => {
+      this.reloadUserData();
+    });
   }
 }

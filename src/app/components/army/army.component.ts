@@ -32,41 +32,13 @@ export class ArmyComponent implements OnInit {
       });
       return points;
   }
-  displayUnits(army: Army) {
-    let display = document.getElementById("display");
-    if(display != null) {
-      display.innerHTML=`
-      <thead>
-        <tr>
-          <th class="row">Nom de l'armée</th>
-          <th class="row">Factions</th>
-          <th class="row">Alliance</th>
-        </tr>
-        <tr> 
-          <th class="rowhead">${army.armyName}</th>
-          <th class="rowhead">${army.faction}</th>
-          <th class="rowhead">${army.alliance}</th>
-        </tr>
-        <tr>
-          <th class="row">Nom de l'unité</th>
-          <th class="row">points</th>
-          <th class="row">Nombre de figurine</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-        `;
-        console.log(army);
-      for(let i = 0; i< army.units.length; i++) {
-        console.log(army.units[i].unitsName)
-        display.children[1].innerHTML += `
-        <tr>
-          <td class="row">${army.units[i].unitsName}</td>
-          <td class="row">${army.units[i].points}</td>
-          <td class="row">${army.units[i].nombreFigurine}</td>
-        </tr>
-        `;
-      }
+  displayUnits(id: number) {
+    let display = document.getElementsByClassName("unitsList" + id);
+    for(let i = 0; i < display.length; i++) {
+      display[i].classList.toggle("disable");
     }
+    let chevron = document.getElementsByClassName("arrow");
+    chevron[id].classList.toggle("fa-chevron-right");
+    chevron[id].classList.toggle("fa-chevron-down");
   }
 }

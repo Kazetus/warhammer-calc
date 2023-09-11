@@ -21,16 +21,34 @@
                 </thead>
                 <tbody *ngFor="let army of user.army; let index = index">
                         <tr>
-                            <td class="row" (click)="displayUnits(index)">{{army.armyName}}</td>
+                            <td class="row armyName" (click)="displayUnits(index)"><i class="arrow fa-solid fa-chevron-right"></i> {{army.armyName}}</td>
                             <td class="row">{{army.faction}}</td>
                             <td class="row">{{ArmyPoints(army)}}</td>
                             <td class="row"><button class="delete" (click)="removeArmy(index)"><i class="fa-solid fa-trash-can"></i></button></td>
                         </tr>
-                        <tr class="disable unitsList{{index}}" *ngFor="let unit of army.units; let uIndex = index">
+                        <tr class="disable unitsList{{index}}">
+                            <td class="headRow">Nom de l'unité</td>
+                            <td class="headRow">Nombre de figurines</td>
+                            <td class="headRow">Points de l'unités</td>
+                            <td class="headRow">Supprimer</td>
+                        </tr>
+                        <tr class="disable unitsList{{index}}" *ngFor="let unit of army.units">
                             <td class="unitsRow">{{unit.unitsName}}</td>
                             <td class="unitsRow">{{unit.nombreFigurine}}</td>
                             <td class="unitsRow">{{unit.points}}</td>
-                            <td class="unitsRow"><button class="delete" (click)="removeUnitsFromArmy(army, uIndex)"><i class="fa-solid fa-trash-can"></i></button></td>
+                            <td class="unitsRow"><button class="delete" (click)="removeUnitsFromArmy(unit.idArmyUnits)"><i class="fa-solid fa-trash-can"></i></button></td>
+                        </tr>
+                        <tr class="disable unitsList{{index}}">
+                            <td class="headRow">Nom de l'unité</td>
+                            <td class="headRow">Nombre de figurines</td>
+                            <td class="headRow">Points de l'unités</td>
+                            <td class="headRow">Ajouter</td>
+                        </tr>
+                        <tr class="disable unitsList{{index}}" *ngFor="let units of filterFaction(army, faction$ | async)">
+                            <td class="unitsRow">{{units.unitsName}}</td>
+                            <td class="unitsRow">{{units.nombreFigurine}}</td>
+                            <td class="unitsRow">{{units.points}}</td>
+                            <td class="unitsRow"><button class="add" (click)="addUnitsToArmy(army, units)"><i class="fa-solid fa-plus"></i></button></td>
                         </tr>
                 </tbody>
             </table>

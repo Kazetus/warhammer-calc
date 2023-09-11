@@ -55,7 +55,7 @@ button:hover{
 button:active{
     box-shadow: #455660 0px 0px 4px;
 }
-.unitsRow, .row, .rowhead {
+.unitsRow, .row, .rowhead, .headRow {
     border: #455660 3px solid;
     padding: 1rem;
     width: 33%;
@@ -84,4 +84,16 @@ table {
     width: 65%;
     margin: 1rem auto;
     border-collapse: collapse;
+}
+.disable{
+    display: none;
+}
+.unitsRow, .headRow{
+    border: #455660 1px solid;
+}
+.armyName{
+    cursor: pointer;
+}
+.headRow{
+    font-weight: bold;
 }

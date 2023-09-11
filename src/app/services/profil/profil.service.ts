@@ -12,7 +12,9 @@ export class ProfilService {
   CHECK_URL = "check";
   UPDATE_URL = "user/user/";
   DELETE_URL = "user/army/";
+  DELETE_UNITS_URL = "user/armyunits/";
   GET_URL = "user/userdata";
+  ADD_URL = "user/armyunits";
   optionRequete = {
     headers: new HttpHeaders({
       "methods" : "get",
@@ -74,5 +76,33 @@ export class ProfilService {
       })
     };
     return this.http.delete(environment.baseUrl + this.DELETE_URL + id, this.optionRequete).subscribe();
+  }
+  removeUnits(id: number) {
+    let token = this.cookieService.get("authorization");
+    this.optionRequete = {
+      headers: new HttpHeaders({
+        "methods" : "delete",
+        "mode":"cors",
+        'Access-Control-Allow-Origin':'http://localhost:4200',
+        "Authorization" : "Bearer " + token
+      })
+    };
+    return this.http.delete(environment.baseUrl + this.DELETE_UNITS_URL + id, this.optionRequete);
+  }
+  addUnits(idArmy: number, idUnits: number) {
+    let body = {
+      "idArmy" : idArmy,
+      "idUnits" : idUnits
+    }
+    let token = this.cookieService.get("authorization");
+    this.optionRequete = {
+      headers: new HttpHeaders({
+        "methods" : "post",
+        "mode":"cors",
+        'Access-Control-Allow-Origin':'http://localhost:4200',
+        "Authorization" : "Bearer " + token
+      })
+    };
+    return this.http.post(environment.baseUrl + this.ADD_URL, body, this.optionRequete);
   }
 }
