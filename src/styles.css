@@ -55,11 +55,18 @@ button:hover{
 button:active{
     box-shadow: #455660 0px 0px 4px;
 }
-.row, .rowhead {
-    border: #455660 1px solid;
+.unitsRow, .row, .rowhead {
+    border: #455660 3px solid;
     padding: 1rem;
     width: 33%;
     text-align: center;
+}
+.Armydelete {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+
+    background-color: #d96969;
 }
 .rowhead {
     font-weight: normal;

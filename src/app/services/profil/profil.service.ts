@@ -52,9 +52,6 @@ export class ProfilService {
     return this.http.post(environment.baseUrl + this.CHECK_URL, body, this.optionRequete)
   }
   updateUser(user: Object, id: number) {
-    console.log("ici");
-    console.log(user);
-    console.log(environment.baseUrl + this.UPDATE_URL + id);
     let token = this.cookieService.get("authorization");
     this.optionRequete = {
       headers: new HttpHeaders({

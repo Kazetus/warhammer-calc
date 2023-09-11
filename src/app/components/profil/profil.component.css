@@ -45,11 +45,6 @@ button:hover{
 button:active{
     box-shadow: #455660 0px 0px 4px;
 }
-button {
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
-}
 .save {
     width: auto;
     height: auto;
@@ -57,10 +52,21 @@ button {
     background-color: #2AA9BD;
     font-size: 1.3rem;
 }
+button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    }
 .delete {
     background-color: #d96969;
+}
+.disable{
+    display: none;
 }
 .add {
     font-size: 2rem;
     background-color: #C0DB6E;
+}
+.unitsRow{
+    border: #455660 1px solid;
 }

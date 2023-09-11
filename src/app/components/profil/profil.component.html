@@ -19,13 +19,19 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr *ngFor="let army of user.army">
-                        <td class="row" (click)="displayUnits(army)">{{army.armyName}}</td>
-                        <td class="row">{{army.faction}}</td>
-                        <td class="row">{{ArmyPoints(army)}}</td>
-                        <td class="row"><button class="delete" (click)="removeArmy(army.idArmy)"><i class="fa-solid fa-trash-can"></i></button></td>
-                    </tr>
+                <tbody *ngFor="let army of user.army; let index = index">
+                        <tr>
+                            <td class="row" (click)="displayUnits(index)">{{army.armyName}}</td>
+                            <td class="row">{{army.faction}}</td>
+                            <td class="row">{{ArmyPoints(army)}}</td>
+                            <td class="row"><button class="delete" (click)="removeArmy(index)"><i class="fa-solid fa-trash-can"></i></button></td>
+                        </tr>
+                        <tr class="disable unitsList{{index}}" *ngFor="let unit of army.units; let uIndex = index">
+                            <td class="unitsRow">{{unit.unitsName}}</td>
+                            <td class="unitsRow">{{unit.nombreFigurine}}</td>
+                            <td class="unitsRow">{{unit.points}}</td>
+                            <td class="unitsRow"><button class="delete" (click)="removeUnitsFromArmy(army, uIndex)"><i class="fa-solid fa-trash-can"></i></button></td>
+                        </tr>
                 </tbody>
             </table>
         </section>    
