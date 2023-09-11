@@ -24,7 +24,6 @@ export class ArmyComponent implements OnInit {
     this.armyList$= this.armyService.getArmy();
   }
   ngOnInit(): void {
-    this.armyList$= this.armyService.getArmy();
   }
   ArmyPoints(army: any): number {
       let points= 0;
