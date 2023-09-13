@@ -38,6 +38,9 @@ export class SessionLoginService {
       }})
     }) 
   }
+  logout() {
+    this.cookieService.delete("authorization");
+  }
   getUserRole() {
     const token = this.cookieService.get("authorization");
     if(token) {

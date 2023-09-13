@@ -42,7 +42,7 @@ export class RegisterComponent {
       return;
     }
     this.registerService.addUser(this.v.username, this.v.mail, this.v.password).subscribe({next :result => {
-      this.router.navigate(['/'])
+      location.reload();
     },error: error => {
     }})
   }

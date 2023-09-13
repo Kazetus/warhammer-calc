@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { Army } from 'src/app/models/army.model';
@@ -9,6 +10,7 @@ import { User } from 'src/app/models/user.model';
 import { BuilderService } from 'src/app/services/builder/builder.service';
 import { ProfilService } from 'src/app/services/profil/profil.service'
 import { RegisterService } from 'src/app/services/register/register.service';
+import { SessionLoginService } from 'src/app/services/session-login/session-login.service';
 
 
 @Component({
@@ -25,7 +27,7 @@ export class ProfilComponent implements OnInit{
   check: Observable<Boolean> | undefined;
   checked: Boolean;
   faction$: Observable<Faction[]>;
-  constructor(private builderService: BuilderService, private profilService: ProfilService, private registerService: RegisterService, private cookieService: CookieService) {
+  constructor(private router: Router,private sessionlogin: SessionLoginService, private builderService: BuilderService, private profilService: ProfilService, private registerService: RegisterService, private cookieService: CookieService) {
     this.user$ = this.profilService.getUser()
     this.user = new User("", "");
     this.submitted = false;
@@ -33,8 +35,8 @@ export class ProfilComponent implements OnInit{
     this.testPassword = false;
     this.faction$ = this.builderService.getFaction();
     this.updateForm = new FormGroup ( {
-      'username': new FormControl('', Validators.required),
-      'mail': new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$")]),
+      'username': new FormControl(''),
+      'mail': new FormControl('', [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$")]),
       'oldPassword': new FormControl('', Validators.required),
       'newPassword': new FormControl(''),
       'passwordConfirmation': new FormControl('')
@@ -53,7 +55,6 @@ export class ProfilComponent implements OnInit{
       });
     }
     this.faction$.subscribe(data => {
-      console.log(data);
     })
   }
   saveUser(user: User) {
@@ -117,7 +118,6 @@ export class ProfilComponent implements OnInit{
     }
     if(this.v.mail == "") {
       this.updateForm.value.mail = this.user.mail;
-      
     }
     if(this.updateForm.invalid) {
       return;
@@ -134,7 +134,11 @@ export class ProfilComponent implements OnInit{
       if(this.v.newPassword != "" && this.v.passwordConfirmation != "" && this.v.newPassword == this.v.passwordConfirmation) {
         body = Object.assign(body, {"password": this.v.newPassword});
       }
-      this.profilService.updateUser(body, this.user.idUser);
+      this.profilService.updateUser(body, this.user.idUser).subscribe(data => {
+        this.sessionlogin.login(this.v.username, this.v.oldPassword).subscribe(data => {
+          location.reload();
+        });
+      });
     }
   }
   updateUser() {
@@ -144,6 +148,7 @@ export class ProfilComponent implements OnInit{
     });
   }
   removeArmy(id: number) {
+    console.log(id);
     this.profilService.remove(id);
     location.reload();
   }

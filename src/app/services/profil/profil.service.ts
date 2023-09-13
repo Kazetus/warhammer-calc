@@ -63,7 +63,7 @@ export class ProfilService {
         "Authorization" : "Bearer " + token
       })
     };
-    return this.http.put(environment.baseUrl + this.UPDATE_URL + id, user, this.optionRequete).subscribe();
+    return this.http.put(environment.baseUrl + this.UPDATE_URL + id, user, this.optionRequete);
   }
   remove(id: number) {
     let token = this.cookieService.get("authorization");
